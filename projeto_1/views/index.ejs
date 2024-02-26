@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Info</title>
+</head>
+
+<body>
+    <h1>Oi Mundo!</h1>
+    <form action="/pesquisa" method="get">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" required id="nome" placeholder="Digite seu nome."><br>
+
+        <label for="idade">Idade</label>
+        <input type="number" name="idade" id="idade" max="99" min="0" step="1" placeholder="Digite sua idade."><br>
+
+        <label for="data">Data de nascimento</label>
+        <input type="date" name="data" id="data"><br>
+
+        <label for="cor">Cor</label>
+        <input type="color" name="cor" id="cor"><br>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Digite seu email."><br>
+
+        <label for="interesse">Futebol</label>
+        <input type="checkbox" name="interesse" id="interesse" value="futebol">
+        <label for="interesse">Volei</label>
+        <input type="checkbox" name="interesse" id="interesse" value="volei">
+        <label for="interesse">Basquete</label>
+        <input type="checkbox" name="interesse" id="interesse" value="basquete">
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+
+</html>
