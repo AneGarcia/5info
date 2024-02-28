@@ -25,12 +25,36 @@
         <label for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="Digite seu email."><br>
 
-        <label for="interesse">Futebol</label>
-        <input type="checkbox" name="interesse" id="interesse" value="futebol">
-        <label for="interesse">Volei</label>
-        <input type="checkbox" name="interesse" id="interesse" value="volei">
-        <label for="interesse">Basquete</label>
-        <input type="checkbox" name="interesse" id="interesse" value="basquete">
+        <fieldset>
+            <legend>Interesses</legend>
+            <label for="interesse">Futebol</label>
+            <input type="checkbox" name="interesse" id="interesse" value="futebol">
+            <label for="interesse">Volei</label>
+            <input type="checkbox" name="interesse" id="interesse" value="volei">
+            <label for="interesse">Basquete</label>
+            <input type="checkbox" name="interesse" id="interesse" value="basquete">
+        </fieldset>
+        <label for="cidade">Cidade</label>
+        <select name="cidade" id="cidade">
+            <optgroup label="Região da campanha">
+                <option value="Bagé">Bagé</option>
+                <option value="Hulha Negra">Hulha Negra</option>
+                <option value="Aceguá">Aceguá</option>
+                <option value="Candiota">Candiota</option>
+            </optgroup>
+            <optgroup label="Região metropolitana">
+                <option value="Porto Alegre">Porto Alegre</option>
+                <option value="Canoas">Canoas</option>
+            </optgroup>
+        </select><br>
+        <input list="browsers">
+        <datalist id="browsers">
+            <option value="Edge">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>
 
         <input type="submit" value="Enviar">
     </form>
