@@ -13,6 +13,10 @@ app.get('/calculadora', (req, res) =>{
     res.render('exerc_calculadora')
 })
 
+app.get('/tabela', (req,res) =>{
+    res.render('exerc_tabela')
+})
+
 app.get('/Anelise', (req, res)=>{
     res.send('Hello Anelise!')
 })
@@ -38,20 +42,25 @@ app.post('/calculadora', (req,res) =>{
     const operacao = req.body.operacao;
     var resultado;
 
-    if(operacao=="soma"){
+    if(operacao == "soma"){
         resultado = parseInt(req.body.valor1)+parseInt(req.body.valor2);
     }
-    else if(operacao== "subtracao"){
+    else if(operacao == "subtracao"){
         resultado = parseInt(req.body.valor1)-parseInt(req.body.valor2);
     }
-    else if(operacao== "divisao"){
+    else if(operacao == "divisao"){
         resultado = parseInt(req.body.valor1)/parseInt(req.body.valor2);
     }
-    else if(operacao== "multiplicacao"){
+    else if(operacao == "multiplicacao"){
         resultado = parseInt(req.body.valor1)*parseInt(req.body.valor2);
     }
-
-    res.send("O resultado da operação é " + resultado)
+    res.render('exerc_calculadora',{operacao:operacao, resultado:resultado});
+    //res.send("O resultado da "+operação+" é " + resultado)
 })
 
+app.post('/tabela', (req,res)=>{
+    var linhas = req.body.linhas;
+    var colunas = req.body.colunas;
+    res.render('exerc_tabela',{linhas:linhas, colunas:colunas});
+})
 app.listen(port)
