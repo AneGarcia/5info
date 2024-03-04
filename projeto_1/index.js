@@ -35,8 +35,23 @@ app.post('/pesquisar', (req,res) => {
 })
 
 app.post('/calculadora', (req,res) =>{
-    const soma = parseInt(req.body.valor1)+parseInt(req.body.valor2)
-    res.send("O resultado da soma é " + soma)
+    const operacao = req.body.operacao;
+    var resultado;
+
+    if(operacao=="soma"){
+        resultado = parseInt(req.body.valor1)+parseInt(req.body.valor2);
+    }
+    else if(operacao== "subtracao"){
+        resultado = parseInt(req.body.valor1)-parseInt(req.body.valor2);
+    }
+    else if(operacao== "divisao"){
+        resultado = parseInt(req.body.valor1)/parseInt(req.body.valor2);
+    }
+    else if(operacao== "multiplicacao"){
+        resultado = parseInt(req.body.valor1)*parseInt(req.body.valor2);
+    }
+
+    res.send("O resultado da operação é " + resultado)
 })
 
 app.listen(port)
