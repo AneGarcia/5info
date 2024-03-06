@@ -1,44 +1,29 @@
-import express from 'express';
-const app = express();
-const port = 3000
-
-app.set('view engine', 'ejs')
-app.use(express.urlencoded({extended: true}))
-
-app.get('/', (req, res)=>{
+export function helloworld(req, res){
     res.render('index')
-})
-
-app.get('/calculadora', (req, res) =>{
-    res.render('exerc_calculadora')
-})
-
-app.get('/tabela', (req,res) =>{
-    res.render('exerc_tabela')
-})
-
-app.get('/Anelise', (req, res)=>{
+}
+export function hellonome(req, res){
     res.send('Hello Anelise!')
-})
-
-app.get('/:nome', (req, res)=>{
+}
+export function abrecalculadora(req, res){
+    res.render('exerc_calculadora')
+}
+export function abretabela(req,res){
+    res.render('exerc_tabela')
+}
+export function escrevenome(req, res){
     res.send(req.params.nome)
-})
-
-app.get('/:nome/:sobrenome', (req, res)=>{
+}
+export function escrevenomesobrenome(req, res){
     res.send(req.params.nome+" "+req.params.sobrenome)
-})
-
-app.get('/soma/:n1/:n2', (req, res)=>{
+}
+export function soma(req, res){
     const resultado = parseInt(req.params.n1)+parseInt(req.params.n2)
     res.send("O resultado da soma é " + resultado)
-})
-
-app.post('/pesquisar', (req,res) => {
+}
+export function pesquisar(req,res){
     res.send("Dados recebidos: "+ req.body.nome)
-})
-
-app.post('/calculadora', (req,res) =>{
+}
+export function calculadora(req,res){
     const operacao = req.body.operacao;
     var resultado;
 
@@ -56,11 +41,7 @@ app.post('/calculadora', (req,res) =>{
     }
     res.render('exerc_calculadora',{operacao:operacao, resultado:resultado});
     //res.send("O resultado da "+operação+" é " + resultado)
-})
-
-app.post('/tabela', (req,res)=>{
-    var linhas = req.body.linhas;
-    var colunas = req.body.colunas;
-    res.render('exerc_tabela',{linhas:linhas, colunas:colunas});
-})
-app.listen(port)
+}
+export function tabela(req,res){
+    res.render('exerc_tabela',{linhas:req.body.linhas, colunas:req.body.colunas});
+}
