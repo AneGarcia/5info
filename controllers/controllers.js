@@ -45,3 +45,12 @@ export function calculadora(req,res){
 export function tabela(req,res){
     res.render('exerc_tabela',{linhas:req.body.linhas, colunas:req.body.colunas});
 }
+export function abreupload(req,res){
+    res.render('upload')
+}
+export function upload(req,res){
+    res.send("<img src='/"+req.file.filename+"'>")
+}
+export function abreCadastro(req,res){
+    res.render('exerc_cadastro',{foto:req.file.filename, nome:req.body.nome, email:req.body.email, senha:req.body.senha})
+}
