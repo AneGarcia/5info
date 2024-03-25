@@ -1,36 +1,42 @@
 import express from 'express';
-import { abrecalculadora, abretabela, calculadora, escrevenome, escrevenomesobrenome, hellonome, helloworld, pesquisar, soma, tabela,abreupload,upload} from '../controllers/controllers.js';
-import {abreCadastro,cadastro} from '../controllers/controllers.js';
 const router = express.Router();
+
+//import { upload,helloworld,hellonome,abrecalculadora,calculadora,abretabela,tabela,qualquernome,nomesobrenome,soma,pesquisar, abrirupload } from '../controllers/controllers.js';
+
+import {abretela,mostradados} from '../controllers/controllers.js';
 
 import multer from 'multer';
 const foto = multer({dest:'./public'})
 
+router.get('/usuario', abretela)
+router.post('/usuario', foto.single('foto'), mostradados)
 
-router.get('/cadastro', abreCadastro)
-router.post('/cadastro', foto.single('foto'), cadastro)
+/*
+router.get('/', helloworld)
 
-// router.get('/', helloworld)
+router.get('/diego', hellonome)
 
-// router.get('/Anelise', hellonome)
+//rota para abrir a página calculadora.ejs
+router.get('/calculadora', abrecalculadora)
 
-// router.get('/calculadora', abrecalculadora)
+//rota para receber dados da calculadora e mostrar o resultado final
+router.post('/calculadora', calculadora)
 
-// router.get('/tabela', abretabela)
+router.get('/tabela', abretabela)
 
-// router.get('/upload', abreupload)
-// router.post('/upload', foto.single('foto'), upload)
+router.post('/tabela', tabela)
 
-// router.get('/:nome', escrevenome)
+router.get('/upload', abrirupload)
+router.post('/upload', foto.single('foto') , upload)
 
-// router.get('/:nome/:sobrenome', escrevenomesobrenome)
+router.get('/:nome', qualquernome)
 
-// router.get('/soma/:n1/:n2', soma)
+router.get('/:nome/:sobrenome', nomesobrenome)
 
-// router.post('/pesquisar', pesquisar)
+router.get('/soma/:x/:y', soma)
 
-// router.post('/calculadora', calculadora)
+router.post('/pesquisar', pesquisar)
 
-// router.post('/tabela', tabela)
+*/
 
 export default router;

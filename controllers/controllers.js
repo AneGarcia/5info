@@ -1,78 +1,94 @@
-import {Usuario} from '../models/usuario.js'
+import Usuario from '../models/usuario.js'
 
-export function helloworld(req, res){
+export function helloworld(req,res){
     res.render('index')
 }
-export function hellonome(req, res){
-    res.send('Hello Anelise!')
+
+export function hellonome(req,res){
+    res.send("Hello Diego!")
 }
-export function abrecalculadora(req, res){
-    res.render('exerc_calculadora')
+
+export function abrecalculadora(req,res){
+    res.render('calculadora')
 }
-export function abretabela(req,res){
-    res.render('exerc_tabela')
-}
-export function escrevenome(req, res){
-    res.send(req.params.nome)
-}
-export function escrevenomesobrenome(req, res){
-    res.send(req.params.nome+" "+req.params.sobrenome)
-}
-export function soma(req, res){
-    const resultado = parseInt(req.params.n1)+parseInt(req.params.n2)
-    res.send("O resultado da soma é " + resultado)
-}
-export function pesquisar(req,res){
-    res.send("Dados recebidos: "+ req.body.nome)
-}
+
 export function calculadora(req,res){
     const operacao = req.body.operacao;
-    var resultado;
+    const valor1 = parseInt(req.body.valor1)
+    const valor2 = parseInt(req.body.valor2)
+    let resultado;
+    switch(operacao){
+        case 'soma': 
+            resultado = valor1+valor2; 
+            break;
+        case 'subtracao': 
+            resultado = valor1-valor2; 
+            break;
+        case 'divisao': 
+            resultado = valor1/valor2; 
+            break;
+        case 'multiplicacao': 
+            resultado = valor1*valor2; 
+            break;
+    }
+    res.render('calculadora',{operacao:operacao, resultado:resultado})
+}
 
-    if(operacao == "soma"){
-        resultado = parseInt(req.body.valor1)+parseInt(req.body.valor2);
-    }
-    else if(operacao == "subtracao"){
-        resultado = parseInt(req.body.valor1)-parseInt(req.body.valor2);
-    }
-    else if(operacao == "divisao"){
-        resultado = parseInt(req.body.valor1)/parseInt(req.body.valor2);
-    }
-    else if(operacao == "multiplicacao"){
-        resultado = parseInt(req.body.valor1)*parseInt(req.body.valor2);
-    }
-    res.render('exerc_calculadora',{operacao:operacao, resultado:resultado});
-    //res.send("O resultado da "+operação+" é " + resultado)
+export function abretabela(req,res){
+    res.render('tabela')
 }
+
 export function tabela(req,res){
-    res.render('exerc_tabela',{linhas:req.body.linhas, colunas:req.body.colunas});
+    console.log(req.body.linhas)
+    res.render('tabela', {linhas:req.body.linhas,colunas:req.body.colunas})
 }
-export function abreupload(req,res){
+
+export function qualquernome(req,res){
+    res.send(req.params.nome)
+}
+
+export function nomesobrenome(req,res){
+    res.send(req.params.nome+" "+req.params.sobrenome)
+}
+
+export function soma(req,res){
+    const soma = parseInt(req.params.x)+parseInt(req.params.y)
+    res.send("O resultado da soma é: "+soma)
+}
+
+export function pesquisar(req, res) {
+    res.send("Dados recebidos: "+req.body.nome)
+}
+
+export function abrirupload(req, res) {
     res.render('upload')
 }
-export function upload(req,res){
+
+export function upload(req, res) {
     res.send("<img src='/"+req.file.filename+"'>")
 }
-export function abreCadastro(req,res){
+
+export function abretela(req,res){
     res.render('usuario')
 }
-export function cadastro(req,res){
+
+export async function mostradados(req,res){
     const usuario = new Usuario({
-        nome: req.params.nome,
-        email: req.params.email,
-        senha: req.params.senha,
+        nome: req.body.nome,
+        email: req.body.email,
+        senha: req.body.senha,
         foto: req.file.filename,
-        datanasc: req.params.datanasc
+        datanasc: req.body.datanasc
     })
 
-    usuario.save(err,result)=>{
-        if(err){
+    console.log(usuario)
 
-        }else{
-            res.render('mostra_cadastro',{
-                foto:req.file.filename, 
-                nome:req.body.nome, 
-                email:req.body.email})
-        }
-    }
+    await usuario.save()
+    res.render('usuario')
+
+    //usuario.save((err,result) => {
+    //    res.render('usuario')
+    //})
+
+
 }
