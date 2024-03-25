@@ -7,8 +7,8 @@ import multer from 'multer';
 const foto = multer({dest:'./public'})
 
 
-router.get('exerc_cadastro', abreCadastro)
-router.post('exerc_cadastro', foto.single('foto'), cadastro)
+router.get('/cadastro', abreCadastro)
+router.post('/cadastro', foto.single('foto'), cadastro)
 
 // router.get('/', helloworld)
 

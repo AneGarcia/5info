@@ -1,3 +1,5 @@
+import {Usuario} from '../models/usuario.js'
+
 export function helloworld(req, res){
     res.render('index')
 }
@@ -52,5 +54,25 @@ export function upload(req,res){
     res.send("<img src='/"+req.file.filename+"'>")
 }
 export function abreCadastro(req,res){
-    res.render('exerc_cadastro',{foto:req.file.filename, nome:req.body.nome, email:req.body.email, senha:req.body.senha})
+    res.render('usuario')
+}
+export function cadastro(req,res){
+    const usuario = new Usuario({
+        nome: req.params.nome,
+        email: req.params.email,
+        senha: req.params.senha,
+        foto: req.file.filename,
+        datanasc: req.params.datanasc
+    })
+
+    usuario.save(err,result)=>{
+        if(err){
+
+        }else{
+            res.render('mostra_cadastro',{
+                foto:req.file.filename, 
+                nome:req.body.nome, 
+                email:req.body.email})
+        }
+    }
 }

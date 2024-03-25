@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        body{
+            background-color:antiquewhite;
+        }
+        div{
+            background-color: white;
+            margin: auto;
+            width: 1024px;
+            text-align: center;
+            padding: 5px;
+            padding-bottom: 20px;
+        }
+        input{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Cadastro</h1>
+        <form method="post" enctype="multipart/form-data">
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome."><br>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Digite seu email."><br>
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha."><br>
+            <label for="foto">Foto</label>
+            <input type="file" accept="image/*" name="foto" id="foto"><br>
+            <label for="datanasc">Data de nascimento</label>
+            <input type="date" name="datanasc" id="datanasc">
+
+            <input type="submit" value="Enviar">
+    </div>
+    </form>
+</body>
+</html>
