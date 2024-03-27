@@ -94,3 +94,20 @@ export async function buscarusuarios(req,res){
     let usuarios = await Usuario.find({nome:req.body.pesquisar})
     res.render('mostrausuarios', {Usuarios:usuarios})
 }
+export async function abretelaeditar(req,res){
+    let usuario = await Usuario.findById(req.params.id)
+    res.render('editausuario',{Usuario:usuario})
+}
+export async function editarusuario(req,res){
+    let usuario = await Usuario.findById(req.params.id)
+    usuario.nome = req.body.nome
+    usuario.email = req.body.email
+    usuario.senha = req.body.senha
+    usuario.datanasc = req.body.datanasc
+    await usuario.save()
+    res.redirect('/mostrausuarios')
+}
+export async function deletausuario(req,res){
+    let usuario = await Usuario.findByIdAndDelete(req.params.id)
+    res.redirect('/mostrausuarios')
+}

@@ -17,12 +17,20 @@
             <th>Nome</th>
             <th>Email</th>
             <th>Foto</th>
+            <th>Editar</th>
+            <th>Deletar</th>
         </tr>
         <% Usuarios.forEach(function (usuario){%>
             <tr>
                 <td><%=usuario.nome%></td>
                 <td><%=usuario.email%></td>
-                <td><img src="/<%=usuario.foto%>" alt="Foto de perfil"></td>
+                <td><img src="/<%=usuario.foto%>" width="200px" alt="Foto de perfil"></td>
+                <td>
+                    <a href="/editarusuario/<%=usuario.id%>">Editar</a>
+                </td>
+                <td>
+                    <a href="/deletarusuario/<%=usuario.id%>">Deletar</a>
+                </td>
             </tr>
         <%})%>
     </table>
