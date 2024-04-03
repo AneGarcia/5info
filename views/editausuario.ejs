@@ -1,49 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Usuário</title>
-    <style>
-        body{
-            background-color: darkseagreen;
-        }
-        div{
-            background-color: white;
-            margin: auto;
-            width: 1024px;
-            text-align: left;
-            padding: 5px;
-            padding-bottom: 20px;
-            
-        }
-        input{
-            margin-top: 5px;
-            padding: 5px;
-        }
-        
-    </style>
-</head>
-<body>
-    <div>
-        <form method="post">
+<%-include('cabecalho.ejs')%>
+    <form method="post">
+        <div class="mb-3">
             <label for="id">Id</label>
-            <input type="text" name="_id" id="id" readonly value="<%=Usuario.id%>">
+            <input class="form-control" type="text" name="_id" id="id" readonly value="<%=Usuario.id%>">
+        </div>
+        <div class="mb-3">    
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite seu nome." value="<%=Usuario.nome%>"><br>
+        </div>
+        <div class="mb-3">    
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email." value="<%=Usuario.email%>"><br>
+        </div >
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" name="senha" id="senha">
+            <div id="passwordHelp" class="form-text">
+                Sua senha deve conter 6 caracteres incluindo números e letras.
+              </div>
+        </div>
+        <div class="mb-3">
+            <label for="datanasc" class="form-label">Data de Nascimento</label>
+            <input type="date" class="form-control" name="datanasc" id="datanasc" value="<%=Usuario.datanasc%>"><br>
+        </div>
 
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome" placeholder="Digite seu nome." value="<%=Usuario.nome%>"><br>
-
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="Digite seu email." value="<%=Usuario.email%>"><br>
-            
-            <label for="senha">Senha:</label>
-            <input type="password" name="senha" id="senha" placeholder="Digite sua senha." value="<%=Usuario.senha%>"><br>
-            
-            <label for="datanasc">Data de Nascimento</label>
-            <input type="date" name="datanasc" id="datanasc" value="<%=Usuario.datanasc%>"><br>
-            
-            <input type="submit" value="Enviar">
-        </form>
-    </div>
-</body>
-</html>
+        <input type="submit" class="mb-3 btn btn-outline-primary" value="Enviar">
+    </form>
+<%-include('rodape.ejs')%>
