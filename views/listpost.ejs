@@ -1,0 +1,36 @@
+<%-include('cabecalho.ejs')%>
+
+<form method="post">
+    <div class="form-floating">
+        <input class="m-1 form-control" placeholder="Pesquisar" type="search" name="pesquisar" id="search">
+        <label class="form-label" for="search">Pesquisar</label>
+    </div>
+    <div>
+        <input class="btn btn-outline-primary" type="submit" value="Pesquisar">
+    </div>
+    </form>
+<table class="m-1 table table-hover align-middle">
+    <tr>
+        <th>Título</th>
+        <th>Tags</th>
+        <th>Foto</th>
+        <th>Status</th>
+        <th>Editar</th>
+        <th>Deletar</th>
+    </tr>
+    <% Posts.forEach(function (post){%>
+        <tr>
+            <td><%=post.titulo%></td>
+            <td><%=post.tags%></td>
+            <td><img class="img-thumbnail" src="/<%=post.foto%>" width="200px" alt="Foto do post"></td>
+            <td><%=post.status%></td>
+            <td>
+                <a class="btn btn-outline-primary" href="/editpost/<%=post.id%>">Editar</a>
+            </td>
+            <td>
+                <a class="btn btn-outline-primary" href="/deletepost/<%=post.id%>">Deletar</a>
+            </td>
+        </tr>
+    <%})%>
+</table>
+<%-include('rodape.ejs')%>

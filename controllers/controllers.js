@@ -1,4 +1,5 @@
 import Usuario from '../models/usuario.js'
+import Post from '../models/post.js'
 
 export function helloworld(req,res){
     res.render('index')
@@ -110,4 +111,54 @@ export async function editarusuario(req,res){
 export async function deletausuario(req,res){
     let usuario = await Usuario.findByIdAndDelete(req.params.id)
     res.redirect('/mostrausuarios')
+}
+
+export function abrepost(req,res){
+    res.render('addpost.ejs')
+}
+
+export async function addpost(req,res){
+    console.log(req.file)
+    const post = new Post({
+        titulo: req.body.titulo,
+        texto: req.body.texto,
+        tags: req.body.tags.split(','),
+        foto: req.file.filename,
+        status: req.body.status
+    })
+
+    console.log(post)
+
+    await post.save()
+    res.render('addpost.ejs')
+}
+
+export async function listpost(req,res){
+    let posts = await Post.find({})
+    res.render('listpost', {Posts:posts})
+}
+
+export async function postfiltro(req,res){
+    let posts = await Post.find({titulo: new RegExp(req.body.pesquisar, 'i')})
+    res.render('listpost', {Posts:posts})
+}
+
+export async function deletepost(req,res){
+    let post = await Post.findByIdAndDelete(req.params.id)
+    res.redirect('/listpost')
+}
+
+export async function abreeditpost(req,res){
+    let post = await Post.findById(req.params.id)
+    res.render('editpost.ejs',{Post:post})
+}
+export async function editpost(req,res){
+    let post = await Post.findById(req.params.id)
+    post.titulo = req.body.titulo
+    post.texto = req.body.texto
+    post.tags = req.body.tags.split(',')
+    post.status = req.body.status
+    post.foto = req.file.filename
+    await post.save()
+    res.redirect('/listpost')
 }

@@ -1,0 +1,46 @@
+<%-include('cabecalho.ejs')%>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="id">Id</label>
+            <input class="form-control" type="text" name="_id" id="id" readonly value="<%=Post.id%>">
+        </div>
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Digite o título do post." readonly value="<%=Post.titulo%>">
+        </div>
+        <div class="mb-3">
+            <label for="texto" class="form-label">Texto</label>
+            <input type="text" class="form-control" name="texto" id="texto" placeholder="Digite o conteúdo do post." readonly value="<%=Post.texto%>">
+        </div>
+        <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+            <input type="text" class="form-control" name="tags" id="tags" placeholder="Digite as tags do post separadas por ," readonly value="<%=Post.tags%>">
+        </div>
+        <div class="mb-3">
+            <label for="foto" class="form-label">Foto do post</label>
+            <input name="foto" class="form-control" type="file" id="formFile">
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Status">
+                <option selected>Escolha o status do post</option>
+                <option 
+                <%if(Post.status == 'rascunho'){%>
+                    selected
+                <%}%>
+                value="rascunho">Rascunho</option>
+                <option
+                <%if(Post.status == 'publicado'){%>
+                    selected
+                <%}%>
+                 value="publicado">Publicado</option>
+                <option
+                <%if(Post.status == 'arquivado'){%>
+                    selected
+                <%}%>
+                 value="arquivado">Arquivado</option>
+            </select>
+        </div>
+
+        <input type="submit" class="mb-3 btn btn-outline-primary" value="Enviar">
+    </form>
+<%-include('rodape.ejs')%>
