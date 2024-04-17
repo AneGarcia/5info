@@ -92,7 +92,7 @@ export async function mostrausuarios(req,res){
     res.render('mostrausuarios', {Usuarios:usuarios})
 }
 export async function buscarusuarios(req,res){
-    let usuarios = await Usuario.find({nome:req.body.pesquisar})
+    let usuarios = await Usuario.find({nome: new RegExp(req.body.pesquisar, 'i')})
     res.render('mostrausuarios', {Usuarios:usuarios})
 }
 export async function abretelaeditar(req,res){
@@ -112,11 +112,12 @@ export async function deletausuario(req,res){
     let usuario = await Usuario.findByIdAndDelete(req.params.id)
     res.redirect('/mostrausuarios')
 }
-
+export async function abrelogin(req, res){
+    res.render('login.ejs')
+}
 export function abrepost(req,res){
     res.render('addpost.ejs')
 }
-
 export async function addpost(req,res){
     console.log(req.file)
     const post = new Post({
@@ -132,22 +133,18 @@ export async function addpost(req,res){
     await post.save()
     res.render('addpost.ejs')
 }
-
 export async function listpost(req,res){
     let posts = await Post.find({})
     res.render('listpost', {Posts:posts})
 }
-
 export async function postfiltro(req,res){
     let posts = await Post.find({titulo: new RegExp(req.body.pesquisar, 'i')})
     res.render('listpost', {Posts:posts})
 }
-
 export async function deletepost(req,res){
     let post = await Post.findByIdAndDelete(req.params.id)
     res.redirect('/listpost')
 }
-
 export async function abreeditpost(req,res){
     let post = await Post.findById(req.params.id)
     res.render('editpost.ejs',{Post:post})
